@@ -1235,13 +1235,15 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.5);
+    padding: 0;
+    overflow-y: auto;
 }
 
 .modal-content {
     background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    width: 70%;
+    margin: 10% auto;
+    padding: 15px;
+    width: 90%;
     max-width: 500px;
     position: relative;
     border-radius: 5px;
@@ -1249,28 +1251,31 @@ body {
 
 #modalDetails {
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
 }
 
 #modalDetails #modalImage {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
 }
 
 #modalDetails .modal-text {
     text-align: start;
     margin-bottom: 10px;
+    padding: 15px;
 }
 
 .modal-text {
-    padding: 20px;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .modal-title {
-    font-size: 18px;
+    font-size: 16px;
     color: #333;
     text-align: center;
     margin-bottom: 15px;
@@ -1284,8 +1289,7 @@ body {
 
 .produk-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
 }
@@ -1293,11 +1297,10 @@ body {
 .label {
     font-weight: bold;
     color: #555;
-    flex: 1;
+    margin-bottom: 5px;
 }
 
 .value {
-    flex: 2;
     color: #333;
 }
 
@@ -1306,46 +1309,141 @@ body {
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
-    max-width: 120px;
-}
-
-@media (max-width: 500px) {
-    .produk-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .label {
-        margin-bottom: 5px;
-    }
+    max-width: 100%;
 }
 
 .modal-content button {
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     height: 40px;
     border-radius: 20px;
     background-color: yellow;
+    margin: 15px auto 0;
+    display: block;
 }
 
-.modal-header {
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    #modalDetails {
+        flex-direction: row;
+    }
+    
+    #modalDetails #modalImage {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .produk-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .label {
+        margin-bottom: 0;
+        flex: 1;
+    }
+    
+    .value {
+        flex: 2;
+    }
+    
+    .modal-select {
+        max-width: 120px;
+    }
+}
+
+@keyframes modalopen {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+.modal.show {
+    display: block;
+    animation: modalopen 0.5s;
+}
+
+/* Daftar Produk */
+.produk-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.produk-item {
+    display: flex;
+    flex-direction: column; /* Mengubah arah ke kolom */
     padding: 10px 0;
     border-bottom: 1px solid #ddd;
 }
 
-.modal-title {
-    margin: 0;
-    font-size: 1.25rem;
+.label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px; /* Spasi antar label dan value */
 }
 
-.modal-body {
-    padding: 20px 0;
+.value, .modal-select {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
-.modal-footer {
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
-    text-align: right;
+/* Button Modal */
+.modal-content button {
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    background-color: yellow;
+    margin-top: 10px;
 }
+
+/* Close Button */
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsif untuk ukuran kecil */
+@media screen and (max-width: 480px) {
+    .modal-content {
+        width: 90%; 
+        padding: 15px;
+    }
+    
+    #modalImage {
+        max-width: 100%;
+        padding-top: 30px;
+    }
+    
+    .produk-item {
+        padding: 5px 0;
+    }
+
+    .modal-select {
+        padding: 6px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}
+
 
 .close {
     position: absolute;
